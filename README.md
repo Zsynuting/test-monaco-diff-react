@@ -35,6 +35,8 @@ https://github.com/suren-atoyan/monaco-react/blob/637551552862d3eddffc7e9bb0b840
 
 - React 18 claims that using the `render` API, it will render the APP in React 17 Mode. But the behaviors of React 18 `render` API and the React 17 are different.(React 官方声称，使用 `render` API 会以 17 的 legacy mode 渲染，但是实际观察，React 18 的 `render` API 和 React 17 的行为是不同的)
 
+![](./react-deprecation.png) [link](https://react.dev/blog/2022/03/08/react-18-upgrade-guide#deprecations)
+
 ### The key problem(核心问题)
 
 So the key questions are(所以核心问题是)
