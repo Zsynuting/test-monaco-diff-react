@@ -19,7 +19,7 @@ Rendering a @monaco-editor/react Editor with React 18 using the legacy render AP
 
 - you will find that the cursor jump to the end of the Text Model （你会发现，光标移动到了文档最后）
 
-![](./reproduce-issue.mov)
+Note: check out the video `reproduce-issue.mov` to see the behavior
 
 ### Why the cursor will move the end of Text Model (为什么光标会移动到文档最后)
 
