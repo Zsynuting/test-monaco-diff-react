@@ -60,7 +60,7 @@ function App() {
             }}
             onClick={() => applyRenderMode(true)}
           >
-            Legacy (use render API)
+            Legacy Mode (use render API)
           </button>
           <button
             style={{
@@ -69,7 +69,7 @@ function App() {
             }}
             onClick={() => applyRenderMode(false)}
           >
-            18 (use createRoot API)
+            18 Concurrent Mode (use createRoot API)
           </button>
         </div>
       ) : (
