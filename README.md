@@ -1,46 +1,18 @@
-# Getting Started with Create React App
+### 问题描述
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+使用 React 18 的 render API 渲染 @monaco-editor/react 的时候，在 editor 中输入较快的时候会导致光标飘到最后。
 
-## Available Scripts
+使用 React18 的 createRoot api 渲染的时候，就不会有这个问题。
 
-In the project directory, you can run:
+使用 React 17 的 render API 渲染时候，也没有这个问题。
 
-### `npm start`
+React 官方声称，使用 render API 会以 17 的 legacy mode 渲染，使用 createRoot API 会使用 18 的 concurrent mode 渲染，但实际观察行为是不同的
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 为什么光标会飘到最后
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+@monaco-editor/react 的 effect 检测到 value 修改，并且和 editor 中当前的内容不一致时候，会触发发一次 executeEdits，并将光标移动到最后
+https://github.com/suren-atoyan/monaco-react/blob/637551552862d3eddffc7e9bb0b84058b8e0275c/src/Editor/Editor.tsx#L102
 
-### `npm test`
+### 核心问题
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+所以问题就是 `为什么使用 React 18 的 render API 渲染 @monaco-editor/react 的时候value 会和 editor 的内容不一致`
